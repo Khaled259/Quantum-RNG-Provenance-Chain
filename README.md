@@ -1,5 +1,3 @@
-Okay, here's the README with added emojis to make it more visually appealing:
-
 # ⚛️ Quantum RNG Provenance Chain 🔗
 
 Generate true quantum randomness, store batch hashes on-chain, and train an AI to detect bias.

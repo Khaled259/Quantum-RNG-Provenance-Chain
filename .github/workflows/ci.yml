@@ -1,0 +1,29 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.8, 3.9]
+        node: [14]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with: {python-version: ${{ matrix.python }}}
+      - name: Install Python deps
+        run: |
+          pip install -r quantum/requirements.txt
+          pip install -r ai/requirements.txt
+          pip install -r backend/requirements.txt
+      - name: Run Python tests
+        run: pytest -q
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with: {node-version: ${{ matrix.node }}}
+      - name: Install Node deps
+        run: |
+          cd contracts && npm install
+      - name: Run contract tests
+        run: cd contracts && npx hardhat test

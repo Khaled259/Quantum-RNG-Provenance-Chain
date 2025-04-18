@@ -1,0 +1,6 @@
+Flask
+qiskit
+joblib
+pandas
+scikit-learn
+web3
